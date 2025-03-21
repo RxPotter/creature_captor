@@ -1,6 +1,8 @@
 import csv
 from player import*
-
+from data import*
+from creatureFramework import Creature
+import battle
 directions = ['North', 'East', 'South', 'West']
 def convertCSVto2Dlist(csvFile: str):
     tileMap = []
@@ -19,5 +21,10 @@ def checkPaths():
             #int(input('pick a direction: '))
         else:
             break
+def creature_encouter():
+    pass
 print(player1)
-checkPaths()
+player_creatures = {
+    0: Creature('Blaze Adder', 5)
+}
+print(battle.battle_menu())

@@ -2,15 +2,25 @@ from data import ATTACK_DATA
 
 class Battle:
     def __init__(self, player_creature, enemy_creature, end_battle):
+        # define general variables for battle
         self.creature_data = {'player': player_creature, 'enemy': enemy_creature}
         self.end_battle = end_battle
         self.battle_over = False
 
-    def setup_battle(self):
-        self.player = self.creature_data['player']
-        self.enemy = self.creature_data['enemy']
-        self.player_health = self.player.stats['max_health']
-        self.enemy_health = self.enemy.stats['max_health']
-        self.player_moves = self.player.moves
-        self.enemy_moves = self.enemy.moves
-        
+        # define variables for battle control
+        self.active_creature = None
+        self.indexes = {
+            'fight': 0,
+            'check team': 0,
+            'catch': 0,
+            'run': 0
+        }
+    def battle_menu(self):   
+        self.battle_menu = {
+            0: 'Fight',
+            1: 'Check Team',
+            2: 'Catch',
+            3: 'Run'
+        }
+        return self.battle_menu
+  

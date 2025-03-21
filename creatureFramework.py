@@ -29,4 +29,8 @@ class Creature:
             'regeneration': self.get_stat('regeneration'),
             'speed': self.get_stat('speed')
         }
-    
+    def get_moves(self, all = True):
+        if all:
+            return [move for lvl, move in self.moves.items() if self.level >= lvl]
+        else:
+            return [move for lvl, move in self.moves.items() if self.level >= lvl and ATTACK_DATA[move]['max_uses'] ]
