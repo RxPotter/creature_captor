@@ -14,6 +14,13 @@ mapData = convertCSVto2Dlist(csvFile = "map.csv")
 start_y = len(mapData) - 1 
 start_x = 0
 player1 = Player("Gaia", start_x, start_y)
+ 
+battle_menu = {
+    0: 'Fight',
+    1: 'Check Team',
+    2: 'Catch',
+    3: 'Run'
+    }
 def checkPaths():
     for i, x in enumerate(directions):
         if mapData[player1.x + 1][player1.y] != 0:
@@ -24,7 +31,7 @@ def checkPaths():
 def creature_encouter():
     pass
 print(player1)
-player_creatures = {
-    0: Creature('Blaze Adder', 5)
-}
-print(battle.battle_menu())
+print(player1.player_creatures)
+
+for i in battle_menu:
+    print(f"{i+1}.", battle_menu[i])

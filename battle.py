@@ -1,5 +1,5 @@
 from data import ATTACK_DATA
-
+from player import *
 class Battle:
     def __init__(self, player_creature, enemy_creature, end_battle):
         # define general variables for battle
@@ -15,12 +15,33 @@ class Battle:
             'catch': 0,
             'run': 0
         }
-    def battle_menu(self):   
-        self.battle_menu = {
-            0: 'Fight',
-            1: 'Check Team',
-            2: 'Catch',
-            3: 'Run'
-        }
-        return self.battle_menu
-  
+    def apply_attack(self, attack, target, damage):
+        attack_type = ATTACK_DATA[attack]['type']
+        target_type = target.creature.type
+
+        # attack doubled
+        if attack_type == 'Heat' and target_type == 'Plant' or \
+        attack_type == 'Water' and target_type == 'Heat' or \
+        attack_type == 'Air' and target_type == 'Plant' or \
+        attack_type == 'Plant' and target_type == 'Water':
+            damage *= 2
+
+        # attack halved
+        if attack_type == 'Heat' and target_type == 'Water' or \
+        attack_type == 'Water' and target_type == 'Plant' or \
+        attack_type == 'Air' and target_type == 'Normal' or \
+        attack_type == 'Plant' and target_type == 'Heat':
+            damage /= 2
+        
+        target.creature.health -= damage- target.creature.base_stats['defence']
+        self.check_death()
+
+        def check_death(self):
+            for creature in Player.player_creatures:
+                if creature.health <= 0:
+                    print(f"{creature.name} has fainted!")
+
+                if enemy_creature.health <= 0:
+                    print(f"{enemy_creature.name} has fainted! \n You win!")
+                    self.battle_over = True
+                
