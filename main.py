@@ -9,8 +9,9 @@ def convertCSVto2Dlist(csvFile: str):
             tileMap.append(list(map(int, mapRow)))
     return tileMap
 mapData = convertCSVto2Dlist(csvFile = "map.csv")     
-
-player1 = Player("Gaia", mapData[14][0], mapData[14][0])
+start_y = len(mapData) - 1 
+start_x = 0
+player1 = Player("Gaia", start_x, start_y)
 def checkPaths():
     for i, x in enumerate(directions):
         if mapData[player1.x + 1][player1.y] != 0:

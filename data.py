@@ -26,13 +26,13 @@ CREATURE_DATA = {
 }
 
 ATTACK_DATA = {
-    'Scorch': {'type': 'Heat', 'power': 10, 'accuracy': 90, 'uses': 20, 'effect': 'burn', 'effect_chance': 10},
-    'Spray':  {'type': 'Water', 'power': 5, 'accuracy': 100, 'uses': 25, 'effect': 'none', 'effect_chance': 0},
-    'Thorn':  {'type': 'Plant', 'power': 8, 'accuracy': 90, 'uses': 20, 'effect': 'none', 'effect_chance': 0},
-    'Glide':  {'type': 'Air', 'power': 5, 'accuracy': 100, 'uses': 25, 'effect': 'none', 'effect_chance': 0},
-    'Tackle': {'type': 'Normal', 'power': 8, 'accuracy': 95, 'uses': 30, 'effect': 'none', 'effect_chance': 0},
-    'Bite':   {'type': 'Normal', 'power': 12, 'accuracy': 85, 'uses': 25, 'effect': 'none', 'effect_chance': 0},
-    'Growl':  {'type': 'Normal', 'power': 0, 'accuracy': 100, 'uses': 40, 'effect': 'lower_attack', 'effect_chance': 100},
-    'Feint':  {'type': 'Normal', 'power': 0, 'accuracy': 100, 'uses': 40, 'effect': 'lower_defence', 'effect_chance': 100},
-    
+    'Scorch': {'type': 'Heat', 'power': 10, 'accuracy': 90, 'max uses': 20, 'effect': 'burn', 'effect_chance': 10},
+    'Spray':  {'type': 'Water', 'power': 5, 'accuracy': 100, 'max uses': 25, 'effect': 'none', 'effect_chance': 0},
+    'Thorn':  {'type': 'Plant', 'power': 8, 'accuracy': 90, 'max uses': 20, 'effect': 'none', 'effect_chance': 0},
+    'Glide':  {'type': 'Air', 'power': 5, 'accuracy': 100, 'max uses': 25, 'effect': 'none', 'effect_chance': 0},
+    'Tackle': {'type': 'Normal', 'power': 8, 'accuracy': 95, 'max uses': 30, 'effect': 'none', 'effect_chance': 0},
+    'Bite':   {'type': 'Normal', 'power': 12, 'accuracy': 85, 'max uses': 25, 'effect': 'none', 'effect_chance': 0},
+    'Growl':  {'type': 'Normal', 'power': 0, 'accuracy': 100, 'max uses': 40, 'effect': 'lower_attack', 'effect_chance': 100},
+    'Feint':  {'type': 'Normal', 'power': 0, 'accuracy': 100, 'max uses': 40, 'effect': 'lower_defence', 'effect_chance': 100},
+
 }
