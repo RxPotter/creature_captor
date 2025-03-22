@@ -22,15 +22,18 @@ class Battle:
         print(f"Go {self.creature_data['player'].name}!")
         self.active_creature = [self.creature_data['player']]
         self.enemy_creature = self.creature_data['enemy']
-        self.battle_loop()
+        self.battle_loop(Battle)
+    
     def battle_loop(self):
         while self.battle_over == False:
+            print(f"{self.active_creature[0].name}\t\tHP:\t{self.active_creature[0].health}")
+            print(f"{self.enemy_creature.name}\t\tHP:\t{self.enemy_creature.health}")
             if self.active_creature[0].get_stats()['speed'] > self.enemy_creature.get_stats()['speed']:
-                self.player_turn()
-                self.enemy_turn()
+                self.player_turn(Battle)
+                self.enemy_turn(Battle)
             else:
-                self.enemy_turn()
-                self.player_turn()
+                self.enemy_turn(Battle)
+                self.player_turn(Battle)
     def player_turn(self):
             print("What will you choose to do?")
             for i in self.battle_menu:
@@ -38,7 +41,7 @@ class Battle:
             choice = int(input(""))
             match choice:
                 case 1:
-                    self. fight_menu()
+                    self. fight_menu(Battle)
                 case 2:
                     print(Player.player_creatures)
                 case 3:
@@ -50,7 +53,8 @@ class Battle:
     
     def enemy_turn(self):
         move = choice(self.enemy_creature.get_moves())
-        apply_attack(self, move, self.active_creature[0], ATTACK_DATA[move]['power'])
+        print(f"{self.enemy_creature.name} used {move}!")
+        self.apply_attack(self, move, self.active_creature[0], ATTACK_DATA[move]['power'])
     
     def fight_menu(self):
         print("Choose a move:")
@@ -58,11 +62,12 @@ class Battle:
             print(f"{i+1}.", move)
         choice = int(input(""))
         move = self.active_creature[0].get_moves()[choice-1]
-        apply_attack(self, move, self.enemy_creature, ATTACK_DATA[move]['power'])
+        print(f"{self.active_creature[0].name} used {move}!")
+        self.apply_attack(self, move, self.enemy_creature, ATTACK_DATA[move]['power'])
 
     def apply_attack(self, attack, target, damage):
         attack_type = ATTACK_DATA[attack]['type']
-        target_type = target.creature.type
+        target_type = target.type
 
         # attack doubled
         if attack_type == 'Heat' and target_type == 'Plant' or \
@@ -78,15 +83,16 @@ class Battle:
         attack_type == 'Plant' and target_type == 'Heat':
             damage /= 2
         
-        target.creature.health -= damage- target.creature.base_stats['defence']
-        self.check_death()
+        target.health -= damage- target.get_stat('defence') if damage > target.get_stat('defence') else 0
+        print(f"{target.name} took {damage} damage!")
+        self.check_death(Battle)
 
-        def check_death(self):
+    def check_death(self):
             for creature in Player.player_creatures:
                 if creature.health <= 0:
                     print(f"{creature.name} has fainted!")
                 active_creature = self.active_creature
-                available_creatures = [(index, creature) for index, creature in self.creature_data['player'].items() if creature.health > 0 and (index, creature) not in active_creature]
+                available_creatures = [(index, creature) for index, creature in enumerate(Player.player_creatures) if creature.health > 0 and (index, creature) not in active_creature]
                 
 
                 if self.enemy_creature.health <= 0:
