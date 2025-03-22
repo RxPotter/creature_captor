@@ -15,7 +15,7 @@ def convertCSVto2Dlist(csvFile: str):
 mapData = convertCSVto2Dlist(csvFile = "map.csv")     
 start_y = len(mapData) - 1 
 start_x = 0
-player1 = Player("Gaia", start_x, start_y)
+player1 = Player("", start_x, start_y)
  
 def explore_loop():
     global game_end
@@ -66,13 +66,20 @@ def checkPaths():
 
 def creature_encouter():
     random_creature = random.choice(list(CREATURE_DATA.keys()))
-    Battle.__init__(Battle, player1.player_creatures[0], Creature(random_creature, 10), 0)
+    player_average_level = sum([creature.level for creature in player1.player_creatures]) / len(player1.player_creatures)
+    Battle.__init__(Battle, player1.player_creatures[0], Creature(random_creature, 10), player_average_level + 2)
     Battle.battle_start(Battle)
-#print(player1)
-player1.player_creatures.append(Creature('Blaze Adder', 10))
-
-#print(random_creature)
-#print(player1.player_creatures)
-print()
+starter_creature = [Creature('Blaze Adder', 5), Creature('Frostbite', 5), Creature('Thornback', 5)]
+print("Hello there! What was your name again?")
+player1.name = input("")
+print(f"Ah yes! {player1.name}!")
+print("Welcome to your new adventure!")
+print("The Creatures out there can be dangerous, but with the right partner, you can overcome any challenge!")
+print("Who will be the first to accompany you on your journey?")
+for i in range(len(starter_creature)):
+    print(f"{i+1}. {starter_creature[i]}")
+user_input = int(input(""))
+player1.player_creatures.append(starter_creature[user_input - 1])
+print(f"Wonderful choice, {player1.name}! Now, get out ther and explore to your hearts content!")
 explore_loop()
 

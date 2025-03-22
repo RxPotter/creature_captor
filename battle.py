@@ -82,8 +82,8 @@ class Battle:
         attack_type == 'Air' and target_type == 'Normal' or \
         attack_type == 'Plant' and target_type == 'Heat':
             damage /= 2
-        
-        target.health -= damage- target.get_stat('defence') if damage > target.get_stat('defence') else 0
+        target_defence = 1 - target.get_stat('defence') / 2000
+        target.health -= damage * target_defence
         print(f"{target.name} took {damage} damage!")
         self.check_death(Battle)
 
@@ -93,7 +93,21 @@ class Battle:
                     print(f"{creature.name} has fainted!")
                 active_creature = self.active_creature
                 available_creatures = [(index, creature) for index, creature in enumerate(Player.player_creatures) if creature.health > 0 and (index, creature) not in active_creature]
-                
+                if available_creatures:
+                    print("1: Choose a new creature?")
+                    print("2: Run")
+                    choice = int(input(""))
+                    if choice == 2:
+                        self.battle_over = True
+                    else:
+                        print("Who will you send out next?")
+                        for i, creature in available_creatures:
+                            print(f"{i+1}.", creature)
+                        choice = int(input(""))
+                        self.active_creature = [available_creatures[choice-1][1]]
+                else:
+                    print("You have no more creatures left!")
+                    self.battle_over = True
 
                 if self.enemy_creature.health <= 0:
                     print(f"{self.enemy_creature.name} has fainted! \n You win!")

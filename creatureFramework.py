@@ -33,3 +33,11 @@ class Creature:
             return [move for lvl, move in self.moves.items() if self.level >= lvl]
         else:
             return [move for lvl, move in self.moves.items() if self.level >= lvl and ATTACK_DATA[move]['max_uses'] ]
+    
+    def update_xp(self, amount):
+        if self.level_up - self.xp > amount:
+            self.xp += amount
+        else:
+            self.level += 1
+            self.xp = amount - (self.level_up - self.xp)
+            self.level_up = self.level * 150
