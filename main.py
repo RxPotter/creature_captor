@@ -18,25 +18,58 @@ start_x = 0
 player1 = Player("Gaia", start_x, start_y)
  
 def explore_loop():
-        while game_end == False:
-
+    global game_end
+    while game_end == False:
+        checkPaths()
+        print("Where would you like to go?")
+        user_input = input("")
+        movement(int(user_input))
+        if input == -1:
+            game_end = True
+def movement(user_input):
+    if user_input == 1:
+        try:
+            player1.y -= 1
+        except:
+            print("You cannot move North")
+    if user_input == 2:
+        try:
+            player1.x += 1
+        except:
+            print("You cannot move East")
+    if user_input == 3:
+        try:
+            player1.y += 1
+        except:
+            print("You cannot move South")
+    if user_input == 4:
+        try:
+            player1.y -= 1
+        except:
+            print("You cannot move West")
+    
 def checkPaths():
-    if mapData[player1.y - 1][player1.x] == 1:
-        print("1: North")
-    if mapData[player1.y][player1.x + 1] == 1:
-        print("2: East")
-    if mapData[player1.y + 1][player1.x] == 1:
-        print("3: South")
-    if mapData[player1.y][player1.x - 1] == 1:
-        print("4: West")
+    if player1.y !=0:
+        if mapData[player1.y - 1][player1.x] != 0:
+            print("1: North")
+    if player1.y != len(mapData) - 1:
+        if mapData[player1.y][player1.x + 1] != 0:
+            print("2: East")
+    if player1.y != len(mapData) - 1:
+        if mapData[player1.y + 1][player1.x] != 0:
+            print("3: South")
+    if player1.x != 0:
+      if mapData[player1.y][player1.x - 1] != 0:
+         print("4: West")
 
 def creature_encouter():
-    pass
+    Battle.__init__(Battle, player1.player_creatures[0], Creature(random_creature, 10), 0)
+    Battle.battle_start(Battle)
 #print(player1)
 player1.player_creatures.append(Creature('Blaze Adder', 10))
 random_creature = random.choice(list(CREATURE_DATA.keys()))
 #print(random_creature)
 #print(player1.player_creatures)
-#Battle.__init__(Battle, player1.player_creatures[0], Creature(random_creature, 10), 0)
-#Battle.battle_start(Battle)
+
+explore_loop()
 
