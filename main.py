@@ -47,7 +47,9 @@ def movement(user_input):
             player1.y -= 1
         except:
             print("You cannot move West")
-    
+    encounter_chance = random.randint(0, mapData[player1.y][player1.x])
+    if encounter_chance == 0:
+        creature_encouter() 
 def checkPaths():
     if player1.y !=0:
         if mapData[player1.y - 1][player1.x] != 0:
@@ -63,13 +65,14 @@ def checkPaths():
          print("4: West")
 
 def creature_encouter():
+    random_creature = random.choice(list(CREATURE_DATA.keys()))
     Battle.__init__(Battle, player1.player_creatures[0], Creature(random_creature, 10), 0)
     Battle.battle_start(Battle)
 #print(player1)
 player1.player_creatures.append(Creature('Blaze Adder', 10))
-random_creature = random.choice(list(CREATURE_DATA.keys()))
+
 #print(random_creature)
 #print(player1.player_creatures)
-
+print()
 explore_loop()
 

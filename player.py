@@ -11,7 +11,7 @@ class Player:
         self.y += dy
         
     def __str__(self):
-      return f"Name: {self.name}, X: {self.x}, Y: {self.y}"
+      return f"Name: {self.name}, creature partners: {self.player_creatures}"
     
     def add_creature(self, creature):
         self.player_creatures.append(creature)
