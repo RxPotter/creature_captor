@@ -1,27 +1,27 @@
 CREATURE_DATA = {
     'Blaze Adder': {
         'stats': {'type': 'Heat','max_health': 12, 'attack': 12, 'defence': 8, 'regeneration': 1, 'speed': 15},
-        'moves': {0: 'Scorch',0: 'Tackle',5: 'Glide',7: 'Bite'},
+        'moves': {0: 'Scorch',1: 'Tackle',5: 'Glide',7: 'Bite'},
         'evolve': ('Fire Viper', 16)},
     'Fire Viper': {
         'stats': {'type': 'Heat','max_health': 20, 'attack': 25, 'defence': 12, 'regeneration': 2, 'speed': 25},
-        'moves': {0: 'Scorch',0: 'Tackle',5: 'Glide',7: 'Bite'},
+        'moves': {0: 'Scorch',1: 'Tackle',5: 'Glide',7: 'Bite'},
         'evolve': None},
     'Frostbite': {
         'stats': {'type': 'Water','max_health': 15, 'attack': 10, 'defence': 15, 'regeneration': 1, 'speed': 8},
-        'moves': {0: 'Spray',0: 'Tackle',5: 'Glide',7: 'Bite'},
+        'moves': {0: 'Spray',1: 'Tackle',5: 'Glide',7: 'Bite'},
         'evolve': ('Ice Hound', 17)},
     'Ice Hound': {
         'stats': {'type': 'Water','max_health': 25, 'attack': 16, 'defence': 25, 'regeneration': 2, 'speed': 10},
-        'moves': {0: 'Spray',0: 'Tackle',5: 'Glide',7: 'Bite'},
+        'moves': {0: 'Spray',1: 'Tackle',5: 'Glide',7: 'Bite'},
         'evolve': None},
     'Thornback': {
         'stats': {'type': 'Plant','max_health': 10, 'attack': 10, 'defence': 10, 'regeneration': 1, 'speed': 10},
-        'moves': {0: 'Thorn',0: 'Tackle',5: 'Glide',7: 'Bite'},
+        'moves': {0: 'Thorn',1: 'Tackle',5: 'Glide',7: 'Bite'},
         'evolve': ('Thornspike', 16)},
     'Thornspike': {
         'stats': {'type': 'Plant','max_health': 22, 'attack': 22, 'defence': 20, 'regeneration': 3, 'speed': 20},
-        'moves': {0: 'Thorn',0: 'Tackle',5: 'Glide',7: 'Bite'},
+        'moves': {0: 'Thorn',1: 'Tackle',5: 'Glide',7: 'Bite'},
         'evolve': None},
 }
 

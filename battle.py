@@ -1,5 +1,6 @@
 from data import ATTACK_DATA
 from player import *
+from random import *
 class Battle:
     def __init__(self, player_creature, enemy_creature, end_battle):
         # define general variables for battle
@@ -18,10 +19,46 @@ class Battle:
         }
     def battle_start(self):
         print(f"A wild {self.creature_data['enemy'].name} appeared!")
+        print(f"Go {self.creature_data['player'].name}!")
         self.active_creature = [self.creature_data['player']]
         self.enemy_creature = self.creature_data['enemy']
-        for i in self.battle_menu:
-            print(f"{i+1}.", self.battle_menu[i])
+        self.battle_loop()
+    def battle_loop(self):
+        while self.battle_over == False:
+            if self.active_creature[0].get_stats()['speed'] > self.enemy_creature.get_stats()['speed']:
+                self.player_turn()
+                self.enemy_turn()
+            else:
+                self.enemy_turn()
+                self.player_turn()
+    def player_turn(self):
+            print("What will you choose to do?")
+            for i in self.battle_menu:
+                print(f"{i+1}.", self.battle_menu[i])
+            choice = int(input(""))
+            match choice:
+                case 1:
+                    self. fight_menu()
+                case 2:
+                    print(Player.player_creatures)
+                case 3:
+                    pass
+                case 4:
+                    self.battle_over = True
+                case _:
+                    print("Invalid choice")
+    
+    def enemy_turn(self):
+        move = choice(self.enemy_creature.get_moves())
+        apply_attack(self, move, self.active_creature[0], ATTACK_DATA[move]['power'])
+    
+    def fight_menu(self):
+        print("Choose a move:")
+        for i, move in enumerate(self.active_creature[0].get_moves()):
+            print(f"{i+1}.", move)
+        choice = int(input(""))
+        move = self.active_creature[0].get_moves()[choice-1]
+        apply_attack(self, move, self.enemy_creature, ATTACK_DATA[move]['power'])
 
     def apply_attack(self, attack, target, damage):
         attack_type = ATTACK_DATA[attack]['type']
