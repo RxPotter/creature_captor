@@ -2,7 +2,8 @@ import csv
 from player import*
 from data import*
 from creatureFramework import Creature
-import battle
+from battle import*
+import random
 directions = ['North', 'East', 'South', 'West']
 def convertCSVto2Dlist(csvFile: str):
     tileMap = []
@@ -15,12 +16,7 @@ start_y = len(mapData) - 1
 start_x = 0
 player1 = Player("Gaia", start_x, start_y)
  
-battle_menu = {
-    0: 'Fight',
-    1: 'Check Team',
-    2: 'Catch',
-    3: 'Run'
-    }
+
 def checkPaths():
     for i, x in enumerate(directions):
         if mapData[player1.x + 1][player1.y] != 0:
@@ -30,8 +26,11 @@ def checkPaths():
             break
 def creature_encouter():
     pass
-print(player1)
-print(player1.player_creatures)
+#print(player1)
+player1.player_creatures.append(Creature('Blaze Adder', 10))
+random_creature = random.choice(list(CREATURE_DATA.keys()))
+#print(random_creature)
+#print(player1.player_creatures)
+Battle.__init__(Battle, player1.player_creatures[0], Creature(random_creature, 10), 0)
+Battle.battle_start(Battle)
 
-for i in battle_menu:
-    print(f"{i+1}.", battle_menu[i])

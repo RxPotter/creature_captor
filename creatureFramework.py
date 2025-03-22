@@ -1,5 +1,4 @@
 from data import ATTACK_DATA, CREATURE_DATA
-import random
 
 class Creature:
     def __init__(self, name, level):

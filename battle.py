@@ -9,12 +9,20 @@ class Battle:
 
         # define variables for battle control
         self.active_creature = None
-        self.indexes = {
-            'fight': 0,
-            'check team': 0,
-            'catch': 0,
-            'run': 0
+        self.enemy_creature = None
+        self.battle_menu = {
+        0: 'Fight',
+        1: 'Check Team',
+        2: 'Catch',
+        3: 'Run'
         }
+    def battle_start(self):
+        print(f"A wild {self.creature_data['enemy'].name} appeared!")
+        self.active_creature = [self.creature_data['player']]
+        self.enemy_creature = self.creature_data['enemy']
+        for i in self.battle_menu:
+            print(f"{i+1}.", self.battle_menu[i])
+
     def apply_attack(self, attack, target, damage):
         attack_type = ATTACK_DATA[attack]['type']
         target_type = target.creature.type
@@ -40,8 +48,11 @@ class Battle:
             for creature in Player.player_creatures:
                 if creature.health <= 0:
                     print(f"{creature.name} has fainted!")
+                active_creature = self.active_creature
+                available_creatures = [(index, creature) for index, creature in self.creature_data['player'].items() if creature.health > 0 and (index, creature) not in active_creature]
+                
 
-                if enemy_creature.health <= 0:
-                    print(f"{enemy_creature.name} has fainted! \n You win!")
+                if self.enemy_creature.health <= 0:
+                    print(f"{self.enemy_creature.name} has fainted! \n You win!")
                     self.battle_over = True
                 
