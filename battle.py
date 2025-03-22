@@ -45,12 +45,22 @@ class Battle:
                 case 2:
                     print(Player.player_creatures)
                 case 3:
-                    pass
+                    self.catch(Battle)
                 case 4:
                     self.battle_over = True
                 case _:
                     print("Invalid choice")
     
+    def catch(self):
+        catch_rate = self.enemy_creature.catch_rate - self.enemy_creature.health
+        if catch_rate > randint(0, 100):
+            print(f"You caught {self.enemy_creature.name}!")
+            Player.player_creatures.append(self.enemy_creature)
+            self.battle_over = True
+        else:
+            print(f"{self.enemy_creature.name} broke free!")
+            self.enemy_turn(Battle)
+
     def enemy_turn(self):
         move = choice(self.enemy_creature.get_moves())
         print(f"{self.enemy_creature.name} used {move}!")
