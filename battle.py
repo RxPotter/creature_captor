@@ -88,26 +88,23 @@ class Battle:
         self.check_death(Battle)
 
     def check_death(self):
-            for creature in Player.player_creatures:
-                if creature.health <= 0:
+                if self.active_creature[0].health <= 0:
                     print(f"{creature.name} has fainted!")
-                active_creature = self.active_creature
-                available_creatures = [(index, creature) for index, creature in enumerate(Player.player_creatures) if creature.health > 0 and (index, creature) not in active_creature]
-                if available_creatures:
-                    print("1: Choose a new creature?")
-                    print("2: Run")
-                    choice = int(input(""))
-                    if choice == 2:
-                        self.battle_over = True
+                    active_creature = self.active_creature
+                    available_creatures = [(index, creature) for index, creature in enumerate(Player.player_creatures) if creature.health > 0 and (index, creature) not in active_creature]
+                    if available_creatures:
+                        print("1: Choose a new creature?")
+                        print("2: Run")
+                        choice = int(input(""))
+                        if choice == 2:
+                            print("You have no more creatures left!")
+                            self.battle_over = True
                     else:
                         print("Who will you send out next?")
                         for i, creature in available_creatures:
                             print(f"{i+1}.", creature)
                         choice = int(input(""))
                         self.active_creature = [available_creatures[choice-1][1]]
-                else:
-                    print("You have no more creatures left!")
-                    self.battle_over = True
 
                 if self.enemy_creature.health <= 0:
                     print(f"{self.enemy_creature.name} has fainted! \n You win!")

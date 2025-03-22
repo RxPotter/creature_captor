@@ -26,6 +26,7 @@ def explore_loop():
         movement(int(user_input))
         if input == -1:
             game_end = True
+            break
 def movement(user_input):
     if user_input == 1:
         try:
@@ -77,9 +78,9 @@ print("Welcome to your new adventure!")
 print("The Creatures out there can be dangerous, but with the right partner, you can overcome any challenge!")
 print("Who will be the first to accompany you on your journey?")
 for i in range(len(starter_creature)):
-    print(f"{i+1}. {starter_creature[i]}")
+    print(f"{i+1}. {starter_creature[i].name} lvl {starter_creature[i].level}")
 user_input = int(input(""))
 player1.player_creatures.append(starter_creature[user_input - 1])
-print(f"Wonderful choice, {player1.name}! Now, get out ther and explore to your hearts content!")
+print(f"Wonderful choice, {player1.name}! Now, get out there and explore to your hearts content!")
 explore_loop()
 
